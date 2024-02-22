@@ -2,6 +2,29 @@ from django.db import models
 
 
 class Aircraft(models.Model):
+    """
+    Represents an aircraft, detailing its specifications and characteristics.
+
+    Attributes:
+        aircraft_id (CharField): A unique identifier for the aircraft, acting as the primary key.
+        equipment_type (CharField): The type of equipment on the aircraft, optional.
+        type_code (CharField): A specific code representing the aircraft type, optional.
+        year (CharField): The year of manufacture of the aircraft, optional.
+        make (CharField): The manufacturer of the aircraft.
+        model (CharField): The model of the aircraft.
+        category (CharField): The category of the aircraft, optional.
+        aircraft_class (CharField): The class of the aircraft, such as 'single-engine', optional.
+                        Note: 'class' is a reserved word in Python, hence 'aircraft_class' is used.
+        gear_type (CharField): The type of landing gear on the aircraft, optional.
+        engine_type (CharField): The type of engine on the aircraft, optional.
+        complex (BooleanField): Flag indicating if the aircraft is complex, based on criteria like
+                                retractable gear.
+        high_performance (BooleanField): Flag indicating if the aircraft is high performance,
+                                         typically based on horsepower.
+        pressurized (BooleanField): Flag indicating if the aircraft has a pressurized cabin.
+        taa (BooleanField): Flag indicating if the aircraft is considered technologically advanced.
+    """
+
     aircraft_id = models.CharField(max_length=36, primary_key=True)
     equipment_type = models.CharField(max_length=255, blank=True, null=True)
     type_code = models.CharField(max_length=255, blank=True, null=True)
@@ -11,13 +34,13 @@ class Aircraft(models.Model):
     category = models.CharField(max_length=255, blank=True, null=True)
     aircraft_class = models.CharField(
         max_length=255, blank=True, null=True
-    )  # 'class' is a reserved word so used this unlike format for csv file specified
+    )
     gear_type = models.CharField(max_length=255, blank=True, null=True)
     engine_type = models.CharField(max_length=255, blank=True, null=True)
     complex = models.BooleanField(default=False)
     high_performance = models.BooleanField(default=False)
     pressurized = models.BooleanField(default=False)
-    taa = models.BooleanField(default=False)  # Technologically Advanced Aircraft
+    taa = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.make} {self.model} ({self.aircraft_id})"
