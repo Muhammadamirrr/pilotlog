@@ -1,6 +1,25 @@
 from django.db import models
 
 
+class AircraftQuerySet(models.QuerySet):
+    def high_performance(self):
+        return self.filter(high_performance=True)
+
+    def by_make(self, make):
+        return self.filter(make=make)
+
+
+class AircraftManager(models.Manager):
+    def get_queryset(self):
+        return AircraftQuerySet(self.model, using=self._db)
+
+    def high_performance(self):
+        return self.get_queryset().high_performance()
+
+    def by_make(self, make):
+        return self.get_queryset().by_make(make)
+
+
 class Aircraft(models.Model):
     """
     Represents an aircraft, detailing its specifications and characteristics.
@@ -32,15 +51,15 @@ class Aircraft(models.Model):
     make = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     category = models.CharField(max_length=255, blank=True, null=True)
-    aircraft_class = models.CharField(
-        max_length=255, blank=True, null=True
-    )
+    aircraft_class = models.CharField(max_length=255, blank=True, null=True)
     gear_type = models.CharField(max_length=255, blank=True, null=True)
     engine_type = models.CharField(max_length=255, blank=True, null=True)
     complex = models.BooleanField(default=False)
     high_performance = models.BooleanField(default=False)
     pressurized = models.BooleanField(default=False)
     taa = models.BooleanField(default=False)
+
+    objects = AircraftManager()
 
     def __str__(self):
         return f"{self.make} {self.model} ({self.aircraft_id})"

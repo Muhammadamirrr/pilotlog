@@ -73,20 +73,14 @@ class Flight(models.Model):
     total_time = models.DecimalField(
         max_digits=5, decimal_places=2, blank=True, null=True
     )
-    pic = models.DecimalField(
-        max_digits=5, decimal_places=2, blank=True, null=True
-    )
-    sic = models.DecimalField(
-        max_digits=5, decimal_places=2, blank=True, null=True
-    )
+    pic = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    sic = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     night = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     solo = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     cross_country = models.DecimalField(
         max_digits=5, decimal_places=2, blank=True, null=True
     )
-    nvg = models.DecimalField(
-        max_digits=5, decimal_places=2, blank=True, null=True
-    )
+    nvg = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     nvgo_ops = models.IntegerField(blank=True, null=True)
     distance = models.DecimalField(
         max_digits=6, decimal_places=2, blank=True, null=True
