@@ -20,13 +20,13 @@ Before you start, ensure you have the following installed:
 First, clone the repository to your local machine:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Muhammadamirrr/pilotlog.git
 ```
 
 Navigate to the project directory:
 
 ```bash
-cd <project-directory>
+cd pilotlog
 ```
 
 ### Initialize the Environment
